@@ -1,0 +1,39 @@
+syntax = "proto3";
+package kafkaemployees;
+option go_package = "./;kafkaemployees";
+import "google/protobuf/timestamp.proto";
+
+message Event {
+	string id = 1;
+	google.protobuf.Timestamp createdAt = 2;
+	string taskID = 3;
+}
+
+message HRUser {
+    string id = 1;
+    google.protobuf.Timestamp createdAt = 2;
+    google.protobuf.Timestamp updatedAt = 3;
+    google.protobuf.Timestamp deletedAt = 4;
+	
+	string userName = 5;
+	string fullName = 6;
+	string email = 7;
+	string phone = 8;
+	string supervisorID = 9;
+	string organizationID = 10;
+	string positionTitle = 11;
+	string unitID = 12;
+	string locationID = 13;
+
+	uint64 hashSum64 = 1000;
+}
+
+message HRUsersModify {
+    Event event = 1;
+    repeated HRUser users = 2;
+}
+
+message HRUsersDelete {
+    Event event = 1;
+    repeated string userIds = 2;
+}
